@@ -6,12 +6,13 @@ import SingIn from './pages/SingIn';
 import SingUp from './pages/SingUp';
 import Offers from './pages/Offers';
 import ForgetPassword from './pages/ForgetPassword';
+import Header from './components/Header';
 
 function App() {
   return (
     <>
       <Router>
-
+        <Header  /*put header hier to show it in all the pages*//>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/Profile" element={<Profile/>} />
