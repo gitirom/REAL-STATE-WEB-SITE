@@ -23,7 +23,7 @@ const SingIn = () => {
     return (
         <div>
             <section>
-                <h1 className='text-3xl text-center mt-6 font-bold'>Sin In</h1>
+                <h1 className='text-3xl text-center mt-6 font-bold'>Sign In</h1>
             </section>
             <div className='flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto'/*px : padding horizentaly  */>
                 <div className='md:w-[67%] lg:w-[50%] mb-12 md:mb-5 '/*medium width 67% and larger screen w */>
@@ -54,7 +54,7 @@ const SingIn = () => {
                                 </p>
                             </div>
                             <button className="w-full bg-blue-600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 trasition duration-150 ease-in-out hover:shadow-g active:bg-blue-800"
-                        type="submit">Sing in</button>
+                        type="submit">Sign in</button>
                         <div className="my-4 before:border-t flex before:flex-1 items-center before:border-gray-400
                         after:border-t flex after:flex-1 items-center after:border-gray-400">
                             <p className="text-center 
