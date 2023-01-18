@@ -7,6 +7,8 @@ import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+
+
 const SingUp = () => {
     const [showPassword, setshowPassword] = useState(false);
     

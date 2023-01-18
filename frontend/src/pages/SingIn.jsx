@@ -1,11 +1,11 @@
 import React, { useState }  from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
-
-
+import { signInWithEmailAndPassword, auth, getAuth } from "firebase/auth";
+import { toast } from "react-toastify";
 
 const SingIn = () => {
-    
+    const Navigate = useNavigate();
     
     const [formData, setformData] = useState({
         email:"",
@@ -20,6 +20,20 @@ const SingIn = () => {
             [e.target.id]: e.target.value,
         }));                                                 // prevState is some thing typing before 
     }
+
+    async function onSubmit(e){
+        e.preventDefault()
+        try {
+            const auth = getAuth()                           // calls initializeAuth () with all of the dependencies specified
+            const userCredentials = await signInWithEmailAndPassword(auth, email, password)
+            if(userCredentials.user){
+                Navigate("/");
+                toast.success("SignIn was Successful");
+            }
+        } catch (error) {
+            toast.error("Bed user credentials")
+        }
+    }
     return (
         <div>
             <section>
@@ -32,7 +46,7 @@ const SingIn = () => {
                     
                 </div>
                 <div className='w-full md:w-[67%] lg:w-[40%] lg:ml-20'/*in large screen margin left 20px */>
-                        <form >
+                        <form onSubmit={onSubmit}>
                             <input  type="email" id='email' 
                             value={email} onChange={onChange}
                             placeholder="Email Adress"
