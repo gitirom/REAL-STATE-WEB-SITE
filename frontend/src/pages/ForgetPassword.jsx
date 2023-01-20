@@ -13,7 +13,7 @@ const ForgetPassword = () => {
         password:"",
     });
 
-    const {email, password} = formData;                      //destracting data from formData
+    const {email, password} = formData;                      //destructing data from formData
 
     function onChange(e) {
         setformData((prevState) => ({

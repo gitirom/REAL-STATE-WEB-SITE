@@ -1,7 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 import { getDoc, serverTimestamp, setDoc, doc } from 'firebase/firestore';
 import React from 'react';
-import {FcGoogle} from "react-icons/fc"
+import {FcGoogle} from "react-icons/fc";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {db} from "../fier-base" ;
