@@ -31,7 +31,7 @@ const SingIn = () => {
                 toast.success("SignIn was Successful");
             }
         } catch (error) {
-            toast.error("Bed user credentials")
+            toast.error("Bed user credentials");
         }
     }
     return (
