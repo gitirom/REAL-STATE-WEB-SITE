@@ -1,18 +1,30 @@
-import React from 'react';
+import {useEffect, useState} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 
 
 const Header = () => {
+    const [pageState, setpageState] = useState("Sing-In");
+    const auth = getAuth();
     const location = useLocation();
     const navigate = useNavigate();
-    console.log(location.pathname); // returns the location object that contains information about the current URL
+    console.log(location.pathname);                                            // returns the location object that contains information about the current URL
 
-    function pathMathRoute(route){
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) =>{                                    // if user sign in so in the place of Sign-in in nav bar replaced with profile. 
+            if(user){
+                setpageState("Profile");
+            }else{
+                setpageState("Sing-In");
+            }
+        } );
+    }, [auth]);
+
+    function pathMatchRoute(route){
         if(route === location.pathname){ 
-            return true 
+            return true ;
         }
     }
-
     
     
     return (
@@ -26,22 +38,26 @@ const Header = () => {
                     <ul className='flex space-x-10 '>
                         <li className={`cursor-pointer py-3 text-sm font-semibold
                         text-gray-400 border-b-[3px] border-b-transparent                         
-                        ${pathMathRoute("/") && "text-black border-b-red-500"}`} /*if pathMathRoute true do this style*/  
+                        ${pathMatchRoute("/") && "text-black border-b-red-500"}`} /*if pathMathRoute true do this style*/  
                         onClick={() => navigate("/")}
                         >Home</li>  
 
                         <li className={`cursor-pointer py-3 text-sm font-semibold
                         text-gray-400 border-b-[3px] border-b-transparent                        
-                        ${pathMathRoute("/Offers") && "text-black border-b-red-500"}`} 
+                        ${pathMatchRoute("/Offers") && "text-black border-b-red-500"}`} 
                         onClick={() => navigate("/Offers")}
                         >Offers</li>
 
 
                         <li className={`cursor-pointer py-3 text-sm font-semibold
                         text-gray-400 border-b-[3px] border-b-transparent                        
-                        ${pathMathRoute("/Sing-In") && "text-black border-b-red-500"}`} 
-                        onClick={() => navigate("/Sing-In")}
-                        >Sing in</li>
+                        ${(pathMatchRoute("/Sing-In") || pathMatchRoute("/Profile")) && "text-black border-b-red-500"
+                    }`} 
+                        onClick={() => navigate("/Profile")}
+                        > 
+                        {pageState}
+                        
+                        </li>
                     </ul>
                 </div>
             </header>
