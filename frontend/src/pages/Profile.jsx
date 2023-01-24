@@ -2,10 +2,11 @@ import { getAuth, updateProfile} from 'firebase/auth';
 import { updateDoc } from 'firebase/firestore';
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from "react-toastify";
 import {db} from "../fier-base" ;
 import {doc} from "firebase/firestore";
+import {FcHome} from "react-icons/fc";
 
 const Profile = () => {
     const [changeDetail, setchangeDetail] = useState(false);
@@ -62,7 +63,7 @@ const Profile = () => {
                 ${ changeDetail && "bg-red-200 focus:bg-red-200 "}`} />
                 <input type="email" id='email' value={email} disabled className='w-full px-4 py-2 text-xl text-gray-700 bg-white  border-gray-300 rounded transition ease-in-out mt-5 mb-6' />
 
-                <div className='flex justify-between whitespace-nowrap text-sm '>
+                <div className='flex justify-between whitespace-nowrap text-sm mb-5 '>
                     <p className='flex items-center '>Do you want to change your name?
                         <span
                         onClick={() => {
@@ -74,8 +75,16 @@ const Profile = () => {
                         </span>
                     </p>
                     <p onClick={onlogOut} className='text-blue-600  hover:text-blue-700  transition ease-in-out duration-200 ml-1 cursor-pointer'>Sign-Out</p>
+                    
                 </div>
             </form>
+            <button type='submit' className='w-full bg-blue-600 text-white uppercase px-7 py-3 text-sm font-medium rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:b-blue-800 '>
+                <Link to="/create-listing" className='flex justify-center items-center' >
+                <FcHome className='mr-1 text-3xl bg-red-200 rounded-full p-1 border-2' />
+                Sell or rent your home 
+                </Link>
+                
+            </button>
         </div>
         </section>
         

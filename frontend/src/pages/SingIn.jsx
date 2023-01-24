@@ -3,9 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
 import { signInWithEmailAndPassword, auth, getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
+import {AiFillEyeInvisible,  AiFillEye} from "react-icons/ai";
 
 const SingIn = () => {
     const Navigate = useNavigate();
+    const [showPssword, setShowPssword] = useState(false);
     
     const [formData, setformData] = useState({
         email:"",
@@ -52,12 +54,26 @@ const SingIn = () => {
                             placeholder="Email Adress"
                             className='w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-5'
                             />
-                            
-                            <input  type={"password"} id='password' 
-                            value={password} onChange={onChange}
-                            placeholder=" Password "
-                            className='w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out '
-                            />
+                            <div className="relative mb-6 ">
+                                <input  type={showPssword ? "text" : "password"}             // you can show the password now 
+                                id='password' 
+                                value={password} onChange={onChange}
+                                placeholder=" Password "
+                                className='w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out '
+                                />
+
+                                {showPssword ? (
+                                    <AiFillEyeInvisible 
+                                    className="absolute right-3 top-3 text-xl cursor-pointer"
+                                    onClick={() => setShowPssword((prevState) => !prevState) } 
+                                     />   // if showPass false return true .                           // thes is for the showpassword part .     
+                                ) : (
+                                <AiFillEye className="absolute right-3 top-3 text-xl cursor-pointer" 
+                                onClick={() => setShowPssword((prevState) => !prevState) } 
+                                /> )}
+                                
+                            </div>
+
                             <div className="flex justify-between whitespace-nowrap text-sm sm:text-lg ">
                                 <p className="mb-6" >Don't have a account?
                                     <Link to="/Sing-Up"  
