@@ -26,7 +26,9 @@ function App() {
           <Route path="/Sing-Up" element={<SingUp/>} />
           <Route path="/Offers" element={<Offers/>} />
           <Route path="/ForgetPassword" element={<ForgetPassword/>} />
+          <Route path="/create-listing" element={<PrivateRoute />}>           {/*now you can not access these page just when you have authorized  */}
           <Route path="/create-listing" element={<CreateListing />} />
+          </Route>
           
         </Routes>
       </Router>
